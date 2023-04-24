@@ -4,8 +4,24 @@ window.onload = function(){
 }
 
 function main(): void{
+    resetErrorMessages();
     isTextPresent("first-name","First name is required");
     isTextPresent("last-name","Last name is required");
+}
+/**
+ * Reset all the spans back to the default text
+ */
+function resetErrorMessages(): void{
+    let allSpans = document.querySelectorAll("form span");
+    for(let i = 0; i < allSpans.length; i++){
+        let currentSpan = <HTMLElement>allSpans[i];
+        if(currentSpan.hasAttribute("data-required")){
+            currentSpan.innerHTML = "*";
+        }
+        else{
+            currentSpan.innerHTML = "";
+        }
+    }
 }
 
 /**
